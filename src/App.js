@@ -2,17 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-function fearNotLetter(str) {
-  for (let i = 0; i < str.length; i++) {
-    if (str.charCodeAt(i + 1) - str.charCodeAt(i) > 1) {
-      return String.fromCharCode(str.charCodeAt(i) + 1);
-    }
-  }
-
-  return undefined;
+function uniteUnique(...args) {
+  let newArr = [...args].flat();
+  let set = new Set(newArr);
+  newArr = [...set];
+  return newArr;
 }
 
-console.log(fearNotLetter('abce'));
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
 /**************************************************************/
 
 function App() {
