@@ -2,22 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-//Drop it
-
-function dropElements(arr, func) {
-  let index = arr.findIndex((item) => func(item));
-  if (index < 0) {
-    return [];
-  }
-
-  return arr.slice(index);
+//flat without flat
+function steamrollArray(arr) {
+  let result = [].concat(...arr);
+  return result.some(Array.isArray) ? steamrollArray(result) : result;
 }
 
-console.log(
-  dropElements([1, 2, 3, 4], function (n) {
-    return n > 5;
-  })
-);
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
 /**************************************************************/
 
 function App() {
