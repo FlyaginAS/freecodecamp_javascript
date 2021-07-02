@@ -2,31 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-function myReplace(str, before, after) {
-  let isCapital = (word) => {
-    let regExp = new RegExp(/^[A-Z]/);
-    return regExp.test(word);
-  };
-  let toCapital = (word) => {
-    return word.replace(/^\w/, (char) => {
-      return char.toUpperCase();
-    });
-  };
-
-  let newStr = str.replace(before, () => {
-    //определить регистр буквы в заменяемом слове
-    if (isCapital(before)) {
-      return toCapital(after);
-    } else {
-      return after.toLowerCase();
+function fearNotLetter(str) {
+  for (let i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i + 1) - str.charCodeAt(i) > 1) {
+      return String.fromCharCode(str.charCodeAt(i) + 1);
     }
-  });
-  return newStr;
+  }
+
+  return undefined;
 }
 
-console.log(
-  myReplace('I think we should look up there', 'up', 'Down')
-);
+console.log(fearNotLetter('abce'));
 /**************************************************************/
 
 function App() {
