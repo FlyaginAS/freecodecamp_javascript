@@ -2,24 +2,27 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-//Convert HTML Entities
-function convertHTML(str) {
-  let obj = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&apos;',
-  };
-
-  for (let prop in obj) {
-    str = str.replaceAll(prop, obj[prop]);
+//Sum All Odd Fibonacci Numbers before num
+function sumFibs(num) {
+  //получить массив чисел фибоначчи
+  let arrFib = [1, 1];
+  for (let i = 2; i <= num; i++) {
+    arrFib.push(arrFib[i - 1] + arrFib[i - 2]);
   }
-
-  return str;
+  // console.log(arrFib);
+  //отфильтровать только нечентные
+  arrFib = arrFib.filter((item) => item % 2 > 0);
+  // console.log(arrFib);
+  //просуммировать все числа в массиве
+  let sumFib = arrFib.reduce(
+    (acc, item) => (item <= num ? (acc += item) : (acc += 0)),
+    0
+  );
+  // console.log(sumFib);
+  return sumFib;
 }
 
-console.log(convertHTML('Hamburgers < Pizza < Tacos'));
+console.log(sumFibs(4));
 /**************************************************************/
 
 function App() {
