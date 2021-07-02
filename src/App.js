@@ -2,14 +2,24 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-function uniteUnique(...args) {
-  let newArr = [...args].flat();
-  let set = new Set(newArr);
-  newArr = [...set];
-  return newArr;
+//Convert HTML Entities
+function convertHTML(str) {
+  let obj = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&apos;',
+  };
+
+  for (let prop in obj) {
+    str = str.replaceAll(prop, obj[prop]);
+  }
+
+  return str;
 }
 
-console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+console.log(convertHTML('Hamburgers < Pizza < Tacos'));
 /**************************************************************/
 
 function App() {
