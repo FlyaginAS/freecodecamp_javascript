@@ -2,25 +2,37 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-//Arguments Optional
-function addTogether(...args) {
-  if (args.length === 2) {
-    return typeof args[0] === 'number' && typeof args[1] === 'number'
-      ? args[0] + args[1]
-      : undefined;
-  } else {
-    if (typeof args[0] !== 'number') {
-      return undefined;
-    }
-    return function (b) {
-      return typeof args[0] === 'number' && typeof b === 'number'
-        ? args[0] + b
-        : undefined;
-    };
-  }
-}
+//Make a Person
+var Person = function (firstAndLast) {
+  var fullName = firstAndLast;
 
-console.log(addTogether('http://bit.ly/IqT6zt'));
+  this.getFirstName = function () {
+    return fullName.split(' ')[0];
+  };
+
+  this.getLastName = function () {
+    return fullName.split(' ')[1];
+  };
+
+  this.getFullName = function () {
+    return fullName;
+  };
+
+  this.setFirstName = function (name) {
+    fullName = name + ' ' + fullName.split(' ')[1];
+  };
+
+  this.setLastName = function (name) {
+    fullName = fullName.split(' ')[0] + ' ' + name;
+  };
+
+  this.setFullName = function (name) {
+    fullName = name;
+  };
+};
+
+var bob = new Person('Bob Ross');
+bob.getFullName();
 /**************************************************************/
 
 function App() {
