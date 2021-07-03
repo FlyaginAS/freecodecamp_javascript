@@ -2,37 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 
 /************************************************************* */
-//Make a Person
-var Person = function (firstAndLast) {
-  var fullName = firstAndLast;
+//orbital
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  return arr.map(({ name, avgAlt }) => {
+    const earth = earthRadius + avgAlt;
+    const orbitalPeriod = Math.round(
+      2 * Math.PI * Math.sqrt(Math.pow(earth, 3) / GM)
+    );
+    return { name, orbitalPeriod };
+  });
+}
 
-  this.getFirstName = function () {
-    return fullName.split(' ')[0];
-  };
-
-  this.getLastName = function () {
-    return fullName.split(' ')[1];
-  };
-
-  this.getFullName = function () {
-    return fullName;
-  };
-
-  this.setFirstName = function (name) {
-    fullName = name + ' ' + fullName.split(' ')[1];
-  };
-
-  this.setLastName = function (name) {
-    fullName = fullName.split(' ')[0] + ' ' + name;
-  };
-
-  this.setFullName = function (name) {
-    fullName = name;
-  };
-};
-
-var bob = new Person('Bob Ross');
-bob.getFullName();
+orbitalPeriod([{ name: 'sputnik', avgAlt: 35873.5553 }]);
 /**************************************************************/
 
 function App() {
